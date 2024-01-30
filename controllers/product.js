@@ -1,7 +1,16 @@
 const db = require("../connection");
 
 exports.fetchProduct = async () => {
-  const query = db.query("SELECT count(*) FROM dataset");
+  const query = db.query(`
+  SELECT
+  d."Date" AS DAY,
+    COUNT(DISTINCT d."No Telp") AS unique_users_per_day
+    FROM
+    dataset d 
+    GROUP BY
+    DAY 
+    ORDER BY
+  DAY;`);
   return query;
 };
 
