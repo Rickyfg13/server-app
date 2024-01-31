@@ -33,10 +33,10 @@ app.get("/", (req, res) => {
   res.send("API Ready To GO!");
 });
 
-const product = require("./routes");
+const summary = require("./routes/summary");
 // const transactions = require("./routers/transactions");
 
-app.use("/product", product);
+app.use("/summarys", summary);
 // app.use("/transactions", transactions);
 
 const PORT = process.env.PORT;
