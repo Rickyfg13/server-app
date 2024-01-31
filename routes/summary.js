@@ -8,6 +8,9 @@ const {
   getSumUser,
   getNewUserAndReturningByDay,
   getSumNewUserAndReturning,
+  getBusyTime,
+  getBusyDay,
+  getSumAllData,
 } = require("../controllers/summary");
 
 //Swagger get Product
@@ -73,10 +76,28 @@ summary.route("/sum-new-user-and-returning").get(async (req, res) => {
   }
 });
 
-summary.route("/").post(async (req, res) => {
+summary.route("/busy-day").get(async (req, res) => {
   try {
-    const result = await addProduct(req.body);
-    response.success(result, "product created!", res);
+    const result = await getBusyDay();
+    response.success(result, "data fetched!", res);
+  } catch (err) {
+    response.error({ error: err.message }, req.originalUrl, 403, res);
+  }
+});
+
+summary.route("/busy-time").get(async (req, res) => {
+  try {
+    const result = await getBusyTime();
+    response.success(result, "data fetched!", res);
+  } catch (err) {
+    response.error({ error: err.message }, req.originalUrl, 403, res);
+  }
+});
+
+summary.route("/sum-all-data").get(async (req, res) => {
+  try {
+    const result = await getSumAllData();
+    response.success(result, "data fetched!", res);
   } catch (err) {
     response.error({ error: err.message }, req.originalUrl, 403, res);
   }

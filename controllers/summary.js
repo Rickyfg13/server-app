@@ -73,6 +73,38 @@ exports.getSumNewUserAndReturning = async () => {
   return query;
 };
 
+exports.getBusyDay = async () => {
+  const query = db.query(`
+  SELECT d."Date", 
+  COUNT("Email") AS total_users
+       FROM dataset d 
+       GROUP BY "Date"
+       ORDER BY total_users DESC
+       LIMIT 1
+    `);
+  return query;
+};
+
+exports.getBusyTime = async () => {
+  const query = db.query(`
+  SELECT d."Login Hour" , 
+ 	  COUNT("Email") AS total_users
+      FROM dataset d 
+      GROUP BY d."Login Hour" 
+      ORDER BY total_users DESC
+      LIMIT 1;
+    `);
+  return query;
+};
+
+exports.getSumAllData = async () => {
+  const query = db.query(`
+  SELECT count(*)
+      FROM dataset d ;
+    `);
+  return query;
+};
+
 exports.addProduct = async (data) => {
   const query = await db.query("INSERT INTO products SET ?", [data]);
   return { id: query.insertId };
