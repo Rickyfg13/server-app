@@ -105,11 +105,6 @@ exports.getSumAllData = async () => {
   return query;
 };
 
-exports.addProduct = async (data) => {
-  const query = await db.query("INSERT INTO products SET ?", [data]);
-  return { id: query.insertId };
-};
-
 exports.Paginate = async (data) => {
   const page = parseInt(req.query.page) || 1;
   const pageSize = 10;

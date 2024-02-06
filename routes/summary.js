@@ -4,7 +4,6 @@ const summary = express.Router();
 
 const {
   getUserByDay,
-  addProduct,
   getSumUser,
   getNewUserAndReturningByDay,
   getSumNewUserAndReturning,
