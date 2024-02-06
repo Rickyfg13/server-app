@@ -1,10 +1,10 @@
 const express = require("express");
 const response = require("../helpers/response");
-const user = express.Router();
+const users = express.Router();
 
-const {} = require("../controllers/users");
+const { getUserDetail } = require("../controllers/users");
 
-user.route("").get(async (req, res) => {
+users.route("").get(async (req, res) => {
   try {
     const result = "Ding-dong users - root";
     response.success(result, "data fetched!", res);
@@ -13,4 +13,15 @@ user.route("").get(async (req, res) => {
   }
 });
 
-module.exports = user;
+users.route("/detail-user").get(async (req, res) => {
+  try {
+    const data = req.query.email;
+    if (data == undefined) response.error("Email is required");
+    const result = await getUserDetail(data);
+    response.success(result, "data fetched!", res);
+  } catch (err) {
+    response.error({ error: err.message }, req.originalUrl, 403, res);
+  }
+});
+
+module.exports = users;
