@@ -12,24 +12,10 @@ const {
   getSumAllData,
 } = require("../controllers/summary");
 
-//Swagger get Product
-/**
- * @swagger
- * /products:
- *   get:
- *     summary: product fetcher
- *     tags: [products]
- *     responses:
- *       200:
- *         description: product fetched
- *       403:
- *         description: failed to fetch product
- */
-
 /* A. Summary 
  1. User Yang aktif setiap Hari
  */
-summary.route("/").get(async (req, res) => {
+summary.route("").get(async (req, res) => {
   try {
     const result = "Ding-dong Summary - root";
     response.success(result, "data fetched!", res);

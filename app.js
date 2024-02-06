@@ -35,10 +35,12 @@ app.get("/", (req, res) => {
 
 const summary = require("./routes/summary");
 const segmentation = require("./routes/segmentation");
+const user = require("./routes/users");
 // const transactions = require("./routers/transactions");
 
 app.use("/summarys", summary);
 app.use("/segmentation", segmentation);
+app.use("/users", user);
 // app.use("/transactions", transactions);
 
 const PORT = process.env.PORT;

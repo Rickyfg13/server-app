@@ -9,21 +9,7 @@ const {
   getSegmentationByDigitalInterest,
 } = require("../controllers/segmentation");
 
-//Swagger get Product
-/**
- * @swagger
- * /products:
- *   get:
- *     summary: product fetcher
- *     tags: [products]
- *     responses:
- *       200:
- *         description: product fetched
- *       403:
- *         description: failed to fetch product
- */
-
-segmentation.route("/").get(async (req, res) => {
+segmentation.route("").get(async (req, res) => {
   try {
     const result = "Ding-dong segmentation - root";
     response.success(result, "data fetched!", res);
